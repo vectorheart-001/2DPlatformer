@@ -1,0 +1,47 @@
+[gd_scene load_steps=2 format=3 uid="uid://dlqxmjiojfob0"]
+
+[ext_resource type="Script" path="res://game_over.gd" id="1_wc6op"]
+
+[node name="GameOver" type="ColorRect"]
+process_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.835294)
+script = ExtResource("1_wc6op")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Game Over!"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="RetryButton" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(64, 16)
+layout_mode = 2
+text = "Retry"
+
+[node name="StartMenuButton" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Return to Start Menu
+"
+
+[connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer/RetryButton" to="." method="_on_retry_button_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer/StartMenuButton" to="." method="_on_title_screen_button_pressed"]

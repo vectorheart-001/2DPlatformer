@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://doojnqg3vgu2n"]
+
+[ext_resource type="Texture2D" uid="uid://wvw6201xnf5m" path="res://monochrome_tilemap_transparent.png" id="1_7jhct"]
+[ext_resource type="PackedScene" uid="uid://bxxkefatwffye" path="res://hazard_area.tscn" id="2_og1ps"]
+
+[node name="Spikes" type="Node2D"]
+position = Vector2(8, -5)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_7jhct")
+region_enabled = true
+region_rect = Rect2(51.2153, 158.566, 15.6752, 8.78349)
+
+[node name="HazardArea" parent="." instance=ExtResource("2_og1ps")]
+collision_mask = 0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="HazardArea"]
+polygon = PackedVector2Array(-7, 4, -4, -3, -1, 4)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="HazardArea"]
+position = Vector2(8, 0)
+polygon = PackedVector2Array(-7, 4, -4, -3, -1, 4)

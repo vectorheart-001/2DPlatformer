@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3 uid="uid://bpytd3rjw3ouy"]
+
+[ext_resource type="Script" path="res://world.gd" id="1_8mrs7"]
+[ext_resource type="PackedScene" uid="uid://b5g5fvhudrbhp" path="res://player.tscn" id="2_8faog"]
+[ext_resource type="PackedScene" uid="uid://dlqxmjiojfob0" path="res://game_over.tscn" id="3_f0wfd"]
+[ext_resource type="PackedScene" uid="uid://dvj3vy2rg6ibg" path="res://level_completed.tscn" id="5_fdt3c"]
+[ext_resource type="PackedScene" uid="uid://brnvnra88d8tv" path="res://level_tile_map.tscn" id="6_6eucv"]
+
+[node name="World" type="Node2D"]
+script = ExtResource("1_8mrs7")
+
+[node name="Player" parent="." instance=ExtResource("2_8faog")]
+position = Vector2(8, 0)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="GameOver" parent="CanvasLayer" instance=ExtResource("3_f0wfd")]
+unique_name_in_owner = true
+visible = false
+
+[node name="LevelCompleted" parent="CanvasLayer" instance=ExtResource("5_fdt3c")]
+unique_name_in_owner = true
+visible = false
+
+[node name="LevelTileMap" parent="." instance=ExtResource("6_6eucv")]
+
+[connection signal="alert_on_player_death" from="Player" to="." method="_on_player_alert_on_player_death"]
+[connection signal="retry" from="CanvasLayer/GameOver" to="." method="_on_game_over_retry"]
+[connection signal="return_to_tilte_screen" from="CanvasLayer/GameOver" to="." method="_on_game_over_return_to_tilte_screen"]
+[connection signal="next_level" from="CanvasLayer/LevelCompleted" to="." method="_on_level_completed_next_level"]
+[connection signal="retry" from="CanvasLayer/LevelCompleted" to="." method="_on_level_completed_retry"]

@@ -1,10 +1,14 @@
-[gd_scene load_steps=6 format=3 uid="uid://bpytd3rjw3ouy"]
+[gd_scene load_steps=8 format=3 uid="uid://bpytd3rjw3ouy"]
 
 [ext_resource type="Script" path="res://world.gd" id="1_8mrs7"]
 [ext_resource type="PackedScene" uid="uid://b5g5fvhudrbhp" path="res://player.tscn" id="2_8faog"]
 [ext_resource type="PackedScene" uid="uid://dlqxmjiojfob0" path="res://game_over.tscn" id="3_f0wfd"]
 [ext_resource type="PackedScene" uid="uid://dvj3vy2rg6ibg" path="res://level_completed.tscn" id="5_fdt3c"]
+[ext_resource type="Shader" path="res://world.gdshader" id="5_skap4"]
 [ext_resource type="PackedScene" uid="uid://brnvnra88d8tv" path="res://level_tile_map.tscn" id="6_6eucv"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_x6t0a"]
+shader = ExtResource("5_skap4")
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_8mrs7")
@@ -22,7 +26,16 @@ visible = false
 unique_name_in_owner = true
 visible = false
 
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_x6t0a")
+offset_left = -272.0
+offset_top = -264.0
+offset_right = 448.0
+offset_bottom = 296.0
+
 [node name="LevelTileMap" parent="." instance=ExtResource("6_6eucv")]
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
 
 [connection signal="alert_on_player_death" from="Player" to="." method="_on_player_alert_on_player_death"]
 [connection signal="retry" from="CanvasLayer/GameOver" to="." method="_on_game_over_retry"]

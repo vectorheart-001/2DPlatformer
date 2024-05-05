@@ -12,6 +12,12 @@ next_level = ExtResource("2_nc3n2")
 [node name="Player" parent="." index="0"]
 position = Vector2(72, 128)
 
+[node name="ColorRect" parent="CanvasLayer" index="2"]
+offset_left = -184.0
+offset_top = -160.0
+offset_right = 408.0
+offset_bottom = 240.0
+
 [node name="Spikes" parent="." index="3" instance=ExtResource("2_ao2h5")]
 position = Vector2(136, 156)
 
